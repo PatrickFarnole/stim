@@ -192,9 +192,6 @@ return
       case(3)
          allocate(Tice(2))
          call init_stim_winton(Ta)
-      case(4)
-         allocate(Tice(2))
-         call init_stim_flato(Ta)
 #endif
       case default
          stop 'invalid ice model'
@@ -217,9 +214,7 @@ return
 #ifdef _TESTING_
    subroutine do_ice(dz,dt,Tw,S,Ta)
 #else
-   subroutine do_ice(dz,dt,Tw,S,Ta,precip,Qsw,Qfluxes,julianday,secondsofday,longitude, &
-                     latitude,I_0,airt,airp,hum,u10,v10,cloud,sst,sss,rho,rho_0,back_radiation_method, &
-                     hum_method,fluxes_method,albedo,heat)
+   subroutine do_ice(dz,dt,Tw,S,Ta,precip,Qsw,Qfluxes)
 #endif
 !
 ! !DESCRIPTION:
@@ -231,11 +226,7 @@ return
 #ifdef _TESTING_
    REALTYPE, intent(in)    :: dz(:,:),dt,Ta(:,:),S(:,:)
 #else
-   REALTYPE, intent(in)    :: dz(:,:),dt,S(:,:),Ta(:,:),precip(:,:),Qsw(:,:)
-   REALTYPE, intent(in)    :: longitude,latitude,I_0,airt,airp,hum,u10,v10,cloud,sst,sss,rho,rho_0,albedo,heat
-   integer, intent(in)     :: julianday,secondsofday
-   integer, intent(in)     :: back_radiation_method,hum_method,fluxes_method
-  
+   REALTYPE, intent(in)    :: dz(:,:),dt,Ta(:,:),S(:,:),precip(:,:),Qsw(:,:)
 #endif
 !
 ! !INPUT/OUTPUT PARAMETERS:
@@ -300,8 +291,6 @@ return
          call do_stim_mylake(ice_cover,dz,dt,Tw,S,Ta,precip,Qsw,Qfluxes)
       case(3)
          call do_stim_winton(ice_cover,dz,dt,Tw,S,Ta,precip,Qsw,Qfluxes)
-      case(4)
-         call do_stim_flato(ice_cover,dz,dt,Tw,S,Ta,precip,Qsw,Qfluxes)
 #endif
       case default
          stop 'invalid ice model'
