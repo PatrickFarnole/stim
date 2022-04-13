@@ -214,9 +214,13 @@ return
 #ifdef _TESTING_
    subroutine do_ice(dz,dt,Tw,S,Ta)
 #else
+<<<<<<< HEAD
    subroutine do_ice(dz,dt,Tw,S,Ta,precip,Qsw,Qfluxes,julianday,secondsofday,longitude, &
                      latitude,I_0,airt,airp,hum,u10,v10,cloud,rho,rho_0,longwave_radiation, &
                      hum_method,fluxes_method,albedo,heat)
+=======
+   subroutine do_ice(dz,dt,Tw,S,Ta,precip,Qsw,Qfluxes)
+>>>>>>> d4633b89d716c4fb96c48ee3dda1e79f707a69ad
 #endif
 !
 ! !DESCRIPTION:
@@ -229,10 +233,13 @@ return
    REALTYPE, intent(in)    :: dz(:,:),dt,S(:,:),Ta(:,:)
 #else
    REALTYPE, intent(in)    :: dz(:,:),dt,Ta(:,:),S(:,:),precip(:,:),Qsw(:,:)
+<<<<<<< HEAD
    REALTYPE, intent(in)    :: longitude,latitude,I_0,airt,airp,hum,u10,v10,cloud,rho,rho_0,albedo,heat
    integer, intent(in)     :: julianday,secondsofday
    integer, intent(in)     :: longwave_radiation,hum_method,fluxes_method
   
+=======
+>>>>>>> d4633b89d716c4fb96c48ee3dda1e79f707a69ad
 #endif
 !
 ! !INPUT/OUTPUT PARAMETERS:
